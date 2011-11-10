@@ -1,0 +1,558 @@
+ <!DOCTYPE html>  <html> <head>   <title>README</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="./docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">             <a class="source" href="./README.html">               <span class="file_name">README</span>             </a>                                           <a class="source " href="./src/batman.html">                 <span class="base_path">src / </span><span class="file_name">batman.coffee</span>               </a>                                           <a class="source " href="./src/batman.jquery.html">                 <span class="base_path">src / </span><span class="file_name">batman.jquery.coffee</span>               </a>                                           <a class="source " href="./src/batman.node.html">                 <span class="base_path">src / </span><span class="file_name">batman.node.coffee</span>               </a>                                           <a class="source " href="./src/batman.solo.html">                 <span class="base_path">src / </span><span class="file_name">batman.solo.coffee</span>               </a>                                           <a class="source " href="./src/extras/batman.i18n.html">                 <span class="base_path">src / extras / </span><span class="file_name">batman.i18n.coffee</span>               </a>                                           <a class="source " href="./src/extras/batman.rails.html">                 <span class="base_path">src / extras / </span><span class="file_name">batman.rails.coffee</span>               </a>                                           <a class="source " href="./src/tools/batman.html">                 <span class="base_path">src / tools / </span><span class="file_name">batman.coffee</span>               </a>                                           <a class="source " href="./src/tools/build/remove_development_transform.html">                 <span class="base_path">src / tools / build / </span><span class="file_name">remove_development_transform.coffee</span>               </a>                                           <a class="source " href="./src/tools/generator.html">                 <span class="base_path">src / tools / </span><span class="file_name">generator.coffee</span>               </a>                                           <a class="source " href="./src/tools/server.html">                 <span class="base_path">src / tools / </span><span class="file_name">server.coffee</span>               </a>                                           <a class="source " href="./src/tools/utils.html">                 <span class="base_path">src / tools / </span><span class="file_name">utils.coffee</span>               </a>                                           <a class="source " href="./tools/build/remove_development_transform.html">                 <span class="base_path">tools / build / </span><span class="file_name">remove_development_transform.js</span>               </a>                                           <a class="source " href="./tools/cli.html">                 <span class="base_path">tools / </span><span class="file_name">cli.js</span>               </a>                                           <a class="source " href="./tools/framework.html">                 <span class="base_path">tools / </span><span class="file_name">framework.js</span>               </a>                                           <a class="source " href="./tools/generator.html">                 <span class="base_path">tools / </span><span class="file_name">generator.js</span>               </a>                                           <a class="source " href="./tools/server.html">                 <span class="base_path">tools / </span><span class="file_name">server.js</span>               </a>                                           <a class="source " href="./tools/server_utils.html">                 <span class="base_path">tools / </span><span class="file_name">server_utils.js</span>               </a>                                           <a class="source " href="./tools/templates/app/$app$.html">                 <span class="base_path">tools / templates / app / </span><span class="file_name">$app$.coffee</span>               </a>                                           <a class="source " href="./tools/templates/app/controllers/app_controller.html">                 <span class="base_path">tools / templates / app / controllers / </span><span class="file_name">app_controller.coffee</span>               </a>                                           <a class="source " href="./tools/templates/controller/controllers/$name$_controller.html">                 <span class="base_path">tools / templates / controller / controllers / </span><span class="file_name">$name$_controller.coffee</span>               </a>                                           <a class="source " href="./tools/templates/model/models/$name$.html">                 <span class="base_path">tools / templates / model / models / </span><span class="file_name">$name$.coffee</span>               </a>                                           <a class="source " href="./tools/utils.html">                 <span class="base_path">tools / </span><span class="file_name">utils.js</span>               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">           <h1></h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>         <tr>           <td class="docs">                            <h3>Name</h3>               <p>batman</p>                                        <h3>Description</h3>              <p>A full-stack JavaScript framework that helps you build rich, single-page applications with power and speed.</p>                                        <h3>Author</h3>              <p>Nick Small <nick@shopify.com> (http://github.com/nciagra)</p>                                         <h3>Version</h3>               <p>0.7.5</p>                            <h3>Dependencies</h3>               <p>                                    <b>connect</b> : ~1.6.1<br/>                                    <b>coffee-script</b> : 1.1.2<br/>                                                     <h3>Stats</h3>                   <pre class="code_stats">
+http://cloc.sourceforge.net v 1.55  T=0.5 s (58.0 files/s, 16090.0 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+CoffeeScript                    15            893            709           4185
+Javascript                       7             70            243           1385
+CSS                              3             21             13            323
+HTML                             4             39              0            164
+-------------------------------------------------------------------------------
+SUM:                            29           1023            965           6057
+-------------------------------------------------------------------------------
+</pre>                                </p>           </td>           <td id="content" class="code">              <h1>batman.js</h1>
+
+<p><a href="http://batmanjs.org/">batman.js</a> is a framework for building rich single-page browser applications. It is written in <a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> and its API is developed with CoffeeScript in mind, but of course you can use plain old JavaScript too.</p>
+
+<h4>It's got:</h4>
+
+<ul>
+<li>a stateful MVC architecture</li>
+<li>a powerful binding system</li>
+<li>routable controller actions</li>
+<li>pure HTML views</li>
+<li>toolchain support built on <a href="http://nodejs.org">node.js</a> and <a href="http://jashkenas.github.com/coffee-script/#cake">cake</a></li>
+</ul>
+
+<p>The APIs are heavily inspired by <a href="http://rubyonrails.org/">Rails</a> and designed to make Rails devs feel right at home.</p>
+
+<p>We're targeting Chrome, Safari 4+, Firefox 3+, and IE 7+ for compatibility, although some of those require you to include <a href="https://github.com/kriskowal/es5-shim">es5shim</a>.</p>
+
+<h4>Here's some code:</h4>
+
+<p>```coffeescript
+class Shopify extends Batman.App
+  @root 'products#index'</p>
+
+<p>@resources 'products'</p>
+
+<p>class Shopify.Product extends Batman.Model
+  @persist Batman.RestStorage</p>
+
+<p>class Shopify.ProductsController extends Batman.Controller
+  index: -></p>
+
+<p>show: (params) ->
+    Shopify.Product.find params.id, (err, product) =>
+      @set('product', product)
+```</p>
+
+<h4>views/products/index.html</h4>
+
+<p>```html</p>
+
+<ul id="products">
+  <li data-foreach-product="Product.all" data-mixin="animation">
+    <a data-route="product" data-bind="product.name">name will go here</a>
+  </li>
+
+  <li><span data-bind="products.length"></span> <span data-bind="'product' | pluralize products.length"></span></li>
+</ul>
+
+<p>```</p>
+
+<h2>Installation</h2>
+
+<p>If you haven't already, you'll need to install <a href="http://nodejs.org">node.js</a> (0.4.x for now, 0.5.x support forthcoming) and <a href="http://npmjs.org/">npm</a>. Then:</p>
+
+<p><code>bash
+npm install -g batman
+</code></p>
+
+<p>Generate a new batman.js app somewhere, called my_app:</p>
+
+<p><code>bash
+cd ~/code
+batman new my_app
+</code></p>
+
+<p>Fire it up:</p>
+
+<p><code>bash
+cd my_app
+batman server # (or just "batman s")
+</code></p>
+
+<p>Now visit <a href="http://localhost:1047">http://localhost:1047</a> and start playing around!</p>
+
+<h2>The Basics</h2>
+
+<p>Most of the classes you work with in your app code will descend from <code>Batman.Object</code>, which gives you some nice things that are used extensively by the rest of the system.</p>
+
+<h3>Events</h3>
+
+<p>Events in batman.js are pretty simple. Handling an event is like subscribing to a named channel on a particular object, and firing an event is like publishing an argument list (which might be empty) to all subscribers of that channel.</p>
+
+<p><code>coffeescript
+class BatBelt.Gadget extends Batman.Object
+  constructor: -&gt; @usesRemaining = 5
+  use: (howManyTimes) -&gt;
+    if howManyTimes &lt;= @usesRemaining
+      @usesRemaining -= howManyTimes
+      @fire('use', howManyTimes)
+</code></p>
+
+<p>You can use the <code>on</code> method to register handler functions which then get called whenever <code>fire</code> is called for the specified event name. The handlers get whichever extra arguments were passed to <code>fire</code> after the event name itself:</p>
+
+<p>```coffeescript
+gadget.on 'use', (howManyTimes) ->
+  console.log "gadget was used #{howManyTimes} times!"
+gadget.use(2)</p>
+
+<h1>console output: "gadget was used 2 times!"</h1>
+
+<p>```</p>
+
+<h3>Properties</h3>
+
+<p>The <code>observe</code> function is used to observe changes to properties. This forms the basis of the binding system. Here's a simple example:</p>
+
+<p>```coffeescript
+gadget.observe 'name', (newVal, oldVal) ->
+  console.log "name changed from #{oldVal} to #{newVal}!"
+gadget.set 'name', 'Batarang'</p>
+
+<h1>console output: "name changed from undefined to Batarang!"</h1>
+
+<p>```</p>
+
+<p>When you <code>observe</code> a property, you are really just handling its "change" event, which happens to get fired with the new and old values.</p>
+
+<p>Of course you can also <code>get</code> properties to return their values, and if you want to remove them completely then you can <code>unset</code> them:</p>
+
+<p>```coffeescript
+gadget.get 'name'</p>
+
+<h1>returns: 'Batarang'</h1>
+
+<p>gadget.unset 'name'</p>
+
+<h1>console output: "name changed from Batarang to undefined!"</h1>
+
+<p>```</p>
+
+<p>By default, these properties are stored like plain old JavaScript properties: that is, <code>gadget.name</code> would return "Batarang" just like you'd expect. But if you set the gadget's name with <code>gadget.name = 'Shark Spray'</code>, then the observer function you set on <code>gadget</code> will not fire. So when you're working with batman.js properties, use <code>get</code>/<code>set</code>/<code>unset</code> to read/write/delete them.</p>
+
+<h3>Custom Accessors</h3>
+
+<p>What's the point of using <code>gadget.get 'name'</code> instead of just <code>gadget.name</code>? Well, batman.js properties don't always correspond with vanilla JS properties. Let's write a <code>Box</code> class with a custom getter for its volume:</p>
+
+<p>```coffeescript
+class Box extends Batman.Object
+  constructor: (@length, @width, @height) ->
+  @accessor 'volume',
+    get: (key) -> @get('length') * @get('width') * @get('height')</p>
+
+<p>box = new Box(16,16,12)
+box.get 'volume'</p>
+
+<h1>returns 3072</h1>
+
+<p>```</p>
+
+<p>The really cool thing about this is that, because we used <code>@get</code> to access the component properties of <code>volume</code>, batman.js can keep track of those dependencies and let us observe the <code>volume</code> directly:</p>
+
+<p>```coffeescript
+box.observe 'volume', (newVal, oldVal) ->
+  console.log "volume changed from #{oldVal} to #{newVal}!"
+box.set 'height', 6</p>
+
+<h1>console output: "volume changed from 3072 to 1536!"</h1>
+
+<p>```</p>
+
+<p>The box's <code>volume</code> is a read-only attribute here, because we only provided a getter in the accessor we defined. Here's a <code>Person</code> class with a (rather naive) read-write accessor for their name:</p>
+
+<p><code>coffeescript
+class Person extends Batman.Object
+  constructor: (name) -&gt; @set 'name', name
+  @accessor 'name',
+    get: (key) -&gt; [@get('firstName'), @get('lastName')].join(' ')
+    set: (key, val) -&gt;
+      [first, last] = val.split(' ')
+      @set 'firstName', first
+      @set 'lastName', last
+    unset: (key) -&gt;
+      @unset 'firstName'
+      @unset 'lastName'
+</code></p>
+
+<h3>Keypaths</h3>
+
+<p>If you want to get at properties of properties, use keypaths:</p>
+
+<p><code>coffeescript
+employee.get 'team.manager.name'
+</code></p>
+
+<p>This does what you expect and is pretty much the same as <code>employee.get('team').get('manager').get('name')</code>. If you want to observe a deep keypath for changes, go ahead:</p>
+
+<p>```coffeescript
+employee.observe 'team.manager.name', (newVal, oldVal) ->
+  console.log "you now answer to #{newVal || 'nobody'}!"
+manager = employee.get 'team.manager'
+manager.set 'name', 'Bill'</p>
+
+<h1>console output: "you now answer to Bill!"</h1>
+
+<p>```</p>
+
+<p>If any component of the keypath is set to something that would change the overall value, then observers will fire:</p>
+
+<p>```coffeescript
+employee.set 'team', larrysTeam</p>
+
+<h1>console output: "you now answer to Larry!"</h1>
+
+<p>employee.team.unset 'manager'</p>
+
+<h1>console output: "you now answer to nobody!"</h1>
+
+<p>employee.set 'team', jessicasTeam</p>
+
+<h1>console output: "you now answer to Jessica!"</h1>
+
+<p>```</p>
+
+<p>batman.js's dependency tracking system makes sure that no matter how weird your object graph gets, your observers will fire exactly when they should.</p>
+
+<h2>Architecture</h2>
+
+<p>The MVC architecture of batman.js fits together like this:</p>
+
+<ul>
+<li>Controllers are persistent objects which render the views and give them mediated access to the model layer.</li>
+<li>Views are written in pure HTML, and use <code>data-*</code> attributes to create bindings with model data and event handlers exposed by the controllers.</li>
+<li>Models have validations, lifecycle events, a built-in identity map, and can use arbitrary storage backends (<code>Batman.LocalStorage</code>, <code>Batman.RestStorage</code>, and <code>Batman.RailsStorage</code> are included).</li>
+</ul>
+
+<p>A batman.js application is served up in one page load, followed by asynchronous requests for various resources as the user interacts with the app. Navigation within the app is handled via <a href="http://www.w3.org/QA/2011/05/hash_uris.html">hash-bang fragment identifers</a>, with <a href="https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history#Adding_and_modifying_history_entries">pushState</a> support forthcoming.</p>
+
+<h3>The App Class</h3>
+
+<p>Sitting in front of everything else is a subclass of <code>Batman.App</code> which represents your application as a whole and acts as a namespace for your other app classes. The app class never gets instantiated; your main interactions with it are using macros in its class definition, and calling <code>run()</code> on it when it's time to fire up your app.</p>
+
+<p>Here's a simple app class:</p>
+
+<p>```coffeescript
+class BatBelt extends Batman.App
+  @controller 'app', 'gadgets'
+  @model 'gadget'</p>
+
+<p>@root 'app#index'
+  @route 'faq/:questionID', 'app#faq'
+  @resources 'gadgets'
+```</p>
+
+<p>The calls to <code>@controller</code> and <code>@model</code> load external app classes with XHRs. For the controllers, this ends up fetching <code>/controllers/app_controller.coffee</code> and <code>/controllers/gadgets_controller.coffee</code>. The gadget model gets loaded from <code>/models/gadget.coffee</code>.</p>
+
+<h4>Routes</h4>
+
+<p>Routes are defined in a few different ways.</p>
+
+<p><code>@route</code> takes two strings, one representing a path pattern and the other representing a controller action. In the above example, <code>'faq/:questionID'</code> matches any path starting with "/faq/" and having one other segment. That segment is then passed as a named param to the controller action function specified by the second string argument.</p>
+
+<p>For the FAQ route, <code>'app#faq'</code> specifies the <code>faq</code> function on <code>BatBelt.AppController</code>, which should take a <code>params</code> argument and do something sensible with <code>params.questionID</code>.</p>
+
+<p><code>@root 'app#index'</code> is just a shorthand for <code>@route '/', 'app#index'</code>.</p>
+
+<p>The <code>@resources</code> macro takes a resource name which should ideally be the underscored-pluralized name of one of your models. It sets up three routes, as if you'd used the <code>@route</code> macro like so:</p>
+
+<p><code>coffeescript
+@route 'gadgets', 'gadgets#index'
+@route 'gadgets/new', 'gadgets#new'
+@route 'gadgets/:id', 'gadgets#show'
+@route 'gadgets/:id/edit', 'gadgets#edit'
+</code></p>
+
+<p>In addition to setting up these routes, the call to <code>@resources</code> keeps track of the fact that the <code>Gadget</code> model can be accessed in these ways. This lets you load these routes in your controllers or views by using model instances and classes on their own:</p>
+
+<p><code>coffeescript
+class BatBelt.GadgetsController extends Batman.Controller
+  someEventHandler: (node, event) -&gt;
+    @redirect BatBelt.Gadget.find(1) # redirects to "/gadgets/1"
+  someOtherHandler: (node, event) -&gt;
+    @redirect BatBelt.Gadget # redirects to "/gadgets"
+</code></p>
+
+<h3>Controllers</h3>
+
+<p>batman.js controllers are singleton classes with one or more instance methods that can serve as routable actions. Because they're singletons, instance variables persist as long as the app is running.</p>
+
+<p><code>coffeescript
+class BatBelt.AppController extends Batman.Controller
+  index: -&gt;
+  faq: (params) -&gt;
+    @set('question', @get('questions').get(params.questionID)
+</code></p>
+
+<p>Now when you navigate to <code>/#!/faq/what-is-art</code>, the dispatcher runs this <code>faq</code> action with <code>{questionID: "what-is-art"}</code>. It also makes an implicit call to <code>@render</code>, which by default will look for a view at <code>/views/app/faq.html</code>. The view is rendered within the main content container of the page, which is designated by setting <code>data-yield="main"</code> on some tag in the layout's HTML. You can prevent this implicit rendering by calling <code>@render false</code> in your action.</p>
+
+<p>Controllers are also a fine place to put event handlers used by your views. Here's one that uses <a href="http://jquery.com/">jQuery</a> to toggle a CSS class on a button:</p>
+
+<p>```coffeescript
+class MyApp.BigRedButtonController extends Batman.Controller
+  index: -></p>
+
+<p>buttonWasClicked: (node, event) ->
+    $(node).toggleClass('activated')
+```</p>
+
+<p>If you want to redirect to some route, you can use <code>@redirect</code>:</p>
+
+<p><code>coffeescript
+buttonWasClicked: (node, event) -&gt;
+  $(node).toggleClass('activated')
+  @redirect '/apocalypse/'
+</code></p>
+
+<h3>Views</h3>
+
+<p>You write views in plain HTML. These aren't templates in the usual sense: the HTML is rendered in the page as-is, and you use <code>data-*</code> attributes to specify how different parts of the view bind to your app's data. Here's a very small view which displays a user's name and avatar:</p>
+
+<p>```html</p>
+
+<div class="user">
+  <img data-bind-src="user.avatarURL" />
+  <p data-bind="user.name"></p>
+</div>
+
+<p>```</p>
+
+<p>The <code>data-bind</code> attribute on the <code>&lt;p&gt;</code> tag sets up a binding between the user's <code>name</code> property and the content of the tag. The <code>data-bind-src</code> attribute on the <code>&lt;img&gt;</code> tag binds the user's <code>avatarURL</code> property to the <code>src</code> attribute of the tag. You can do the same thing for arbitrary attribute names, so for example <code>data-bind-href</code> would bind to the <code>href</code> attribute.</p>
+
+<p>batman.js uses a bunch of these data attributes for different things:</p>
+
+<h4>Binding properties</h4>
+
+<ul>
+<li><p><code>data-bind="foo.bar"</code>: for most tags, this defines a one-way binding with the contents of the node: when the given property <code>foo.bar</code> changes, the contents of the node are set to that value. When <code>data-bind</code> is set on a form input tag, a <em>two-way</em> binding is defined with the <em>value</em> of the node, such that any changes from the user will update the property in realtime.</p></li>
+<li><p><code>data-bind-foo="bar.baz"</code>: defines a one-way binding from the given property <code>bar.baz</code> to any attribute <code>foo</code> on the node.</p></li>
+<li><p><code>data-foreach-bar="foo.bars"</code>: used to render a collection of zero or more items. If the collection descends from <code>Batman.Set</code>, then the DOM will be updated when items are added or removed.</p></li>
+</ul>
+
+<h4>Handling DOM events</h4>
+
+<ul>
+<li><p><code>data-event-click="foo.bar"</code>: when this node is clicked, the function specified by the keypath <code>foo.bar</code> is called with the node object as the first argument, and the click event as the second argument.</p></li>
+<li><p><code>data-event-change="foo.bar"</code>: like <code>data-event-click</code>, but fires on change events.</p></li>
+<li><p><code>data-event-submit="foo.bar"</code>: like <code>data-event-click</code>, but fires either when a form is submitted (in the case of <code>&lt;form&gt;</code> nodes) or when a user hits the enter key when an <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code> has focus.</p></li>
+</ul>
+
+<h4>Managing contexts</h4>
+
+<ul>
+<li><code>data-context="foo.bar"</code>: pushes a new context onto the context stack for children of this node. If the context is <code>foo.bar</code>, then children of this node may access properties on <code>foo.bar</code> directly, as if they were properties of the controller.</li>
+</ul>
+
+<h4>Rendering Views</h4>
+
+<ul>
+<li><p><code>data-yield="identifier"</code>: used in your layout to specify the locations that other views get rendered into when they are rendered. By default, a controller action renders each whole view into whichever node is set up to yield <code>"main"</code>. If you want some content in a view to be rendered into a different <code>data-yield</code> node, you can use <code>data-contentfor</code>.</p></li>
+<li><p><code>data-contentfor="identifier"</code>: when the view is rendered into your layout, the contents of this node will be rendered into whichever node has <code>data-yield="identifier"</code>. For example, if your layout has <code>"main"</code> and <code>"sidebar"</code> yields, then you may put a <code>data-contentfor="sidebar"</code> node in a view and it will be rendered in the sidebar instead of the main content area. If multiple <code>data-contentfor</code> nodes with the same identifier are present in a view, their contents will be concatenated in the corresponding <code>data-yield</code> node.</p></li>
+<li><p><code>data-partial="shared/sidebar"</code>: renders the view at the path <code>/views/shared/sidebar.html</code> within this node. Note that <code>/views/</code> is prepended.</p></li>
+<li><p><code>data-route="/some/path"</code> or <code>data-route="some.model"</code>: loads a route when this node is clicked. The route can either be specified by a path beginning with a slash "/", or by a property leading to either a model instance (resulting in a resource's "show" action) or a model class (for the resource's "index" action).</p></li>
+</ul>
+
+<h3>Models</h3>
+
+<p>batman.js models:</p>
+
+<ul>
+<li>can persist to various storage backends</li>
+<li>only serialize a defined subset of their properties as JSON</li>
+<li>use a state machine to expose lifecycle events</li>
+<li>can validate with synchronous or asynchronous operations</li>
+</ul>
+
+<h4>Attributes</h4>
+
+<p>A model object may have arbitrary properties set on it, just like any JS object. Only some of those properties are serialized and persisted to its storage backends, however. You define persisted attributes on a model with the <code>encode</code> macro:</p>
+
+<p><code>coffeescript
+  class Article extends Batman.Model
+    @encode 'body_html', 'title', 'author', 'summary_html', 'blog_id', 'id', 'user_id'
+    @encode 'created_at', 'updated_at', 'published_at', Batman.Encoders.railsDate
+    @encode 'tags',
+      encode: (tagSet) -&gt; tagSet.toArray().join(', ')
+      decode: (tagString) -&gt; new Batman.Set(tagString.split(', ')...)
+</code></p>
+
+<p>Given one or more strings as arguments, <code>@encode</code> will register these properties as persisted attributes of the model, to be serialized in the model's <code>toJSON()</code> output and extracted in its <code>fromJSON()</code>. Properties that aren't specified with <code>@encode</code> will be ignored for both serialization and deserialization. If an optional coder object is provided as the last argument, its <code>encode</code> and <code>decode</code> functions will be used by the model for serialization and deserialization, respectively.</p>
+
+<p>By default, a model's primary key (the unchanging property which uniquely indexes its instances) is its <code>id</code> property. If you want your model to have a different primary key, specify the name of the key on the <code>primaryKey</code> class property:</p>
+
+<p><code>coffeescript
+class User extends Batman.Model
+  @primaryKey: 'handle'
+  @encode 'handle', 'email'
+</code></p>
+
+<h4>States</h4>
+
+<ul>
+<li><code>empty</code>: a new model instance remains in this state until some persisted attribute is set on it.</li>
+<li><code>loading</code>: entered when the model instance's <code>load()</code> method is called.</li>
+<li><code>loaded</code>: entered after the model's storage adapter has completed loading updated attributes for the instance. Immediately transitions to the <code>clean</code> state.</li>
+<li><code>dirty</code>: entered when one of the model's persisted attributes changes.</li>
+<li><code>validating</code>: entered when the validation process has started.</li>
+<li><code>validated</code>: entered when the validation process has completed. Immediately after entering this state, the model instance transitions back to either the <code>dirty</code> or <code>clean</code> state.</li>
+<li><code>saving</code>: entered when the storage adapter has begun saving the model.</li>
+<li><code>saved</code>: entered after the model's storage adapter has completed saving the model. Immediately transitions to the <code>clean</code> state.</li>
+<li><code>clean</code>: indicates that none of an instance's attributes have been changed since the model was <code>saved</code> or <code>loaded</code>.</li>
+<li><code>destroying</code>: entered when the model instance's <code>destroy()</code> method is called.</li>
+<li><code>destroyed</code>: indicates that the storage adapter has completed destroying this instance.</li>
+</ul>
+
+<h4>Validation</h4>
+
+<p>Before models are saved to persistent storage, they run through any validations you've defined and the save is cancelled if any errors were added to the model during that process.</p>
+
+<p>Validations are defined with the <code>@validate</code> macro by passing it the properties to be validated and an options object representing the particular validations to perform:</p>
+
+<p><code>coffeescript
+class User extends Batman.Model
+  @encode 'login', 'password'
+  @validate 'login', presence: yes, maxLength: 16
+  @validate 'password', 'passwordConfirmation', presence: yes, lengthWithin: [6,255]
+</code></p>
+
+<p>The options get their meaning from subclasses of <code>Batman.Validator</code> which have been registered by adding them to the <code>Batman.Validators</code> array. For example, the <code>maxLength</code> and <code>lengthWithin</code> options are used by <code>Batman.LengthValidator</code>.</p>
+
+<h4>Persistence</h4>
+
+<p>To specify a storage adapter for persisting a model, use the <code>@persist</code> macro in its class definition:</p>
+
+<p><code>coffeescript
+class Product extends Batman.Model
+  @persist Batman.LocalStorage
+</code></p>
+
+<p>Now when you call <code>save()</code> or <code>load()</code> on a product, it will use the browser window's <a href="https://developer.mozilla.org/en/dom/storage">localStorage</a> to retrieve or store the serialized data.</p>
+
+<p>If you have a REST backend you want to connect to, <code>Batman.RestStorage</code> is a simple storage adapter which can be subclassed and extended to suit your needs. By default, it will assume your CamelCased-singular <code>Product</code> model is accessible at the underscored-pluralized "/products" path, with instances of the resource accessible at <code>/products/:id</code>. You can override these path defaults by assigning either a string or a function-returning-a-string to the <code>url</code> property of your model class (for the collection path) or to the prototype (for the member path). For example:</p>
+
+<p><code>coffeescript
+class Product extends Batman.Model
+  @persist Batman.RestStorage
+  @url = "/admin/products"
+  url: -&gt; "/admin/products/#{@id}"
+</code></p>
+
+<h4>Associations</h4>
+
+<p>Batman models support <code>belongsTo</code>, <code>hasOne</code>, and <code>hasMany</code> associations. Here's a simple example:</p>
+
+<p>```coffeescript
+class App.Store extends Batman.Model
+  @hasMany 'products', options</p>
+
+<p>class App.Product extends Batman.Model
+  @belongsTo 'store', options
+```</p>
+
+<p>The following options are available:</p>
+
+<ul>
+<li><em>namespace</em>: Tells Batman to look for the associated model under the provided namespace. (Defaults to <code>Batman.currentApp</code>.)</li>
+<li><em>name</em>: Tells Batman to use the given model name instead. (Defaults to an interpretation of the association's label.)</li>
+<li><em>saveInline</em>: Tells Batman whether to encode associations as inline JSON when the base model is saved. (Defaults to <code>false</code> for <code>belongsTo</code>, and <code>true</code> for <code>hasOne</code> and <code>hasMany</code>.)</li>
+</ul>
+
+<p>Associations can be loaded via foreign keys or inline JSON:</p>
+
+<p>```coffeescript
+localStorage =
+  stores1: 
+    id: 1
+    name: "JSON Store"
+    product: {id: 1, store_id: 1, name: "JSON Product"}</p>
+
+<p>stores2:
+    id: 2
+    name: "Foreign Key Store"
+  products3:
+    id: 3
+    store_id: 2
+    name: "Foreign Key Product Product"
+```</p>
+
+<p>Association saving is done inline:</p>
+
+<p>```coffeescript
+store = new Store name: "Angry Birds"
+product1 = new Product name: "Foo"
+product2 = new Product name: "Bar"</p>
+
+<p>store.set 'products', new Batman.Set(product1, product2)
+store.save (error, record) ->
+  throw error if error
+  console.log localStorage["stores#{record.get('id')}"]
+  # => {
+  #   id: ...
+  #   name: "Angry Birds"
+  #   products: [{name: "Foo", store<em>id: ...}, {name: "Bar", store</em>id: ...}]
+  # }
+```</p>
+
+<p>(Notice that the products did not receive IDs. This is because association saving is non-cascading, meaning that each model needs to be saved individually to fully persist. You can always call <code>toJSON</code> on a model instance to see what will be stored.)</p>
+
+<p>Associations can be rendered via keypaths, using the same labels you use to create the association:</p>
+
+<p>```html</p>
+
+<div data-foreach-product="store.products" data-bind="product.name"></div>
+
+<p>```</p>
+
+<h1>Contributing</h1>
+
+<p><a href="http://travis-ci.org/Shopify/batman"><img src="https://secure.travis-ci.org/Shopify/batman.png" alt="Build Status" title="" /></a></p>
+
+<p>Well-tested contributions are always welcome! Here's what you should do:</p>
+
+<h4>1. Clone the repo</h4>
+
+<p><code>bash
+git clone https://github.com/Shopify/batman.git
+</code></p>
+
+<h4>2. Run the tests</h4>
+
+<p>You can test batman.js locally either on the command line or in the browser and both should work. Tests are written in Coffeescript using <a href="http://docs.jquery.com/QUnit#API_documentation">QUnit</a>.</p>
+
+<p>To run on the command line, run the following command from the project root:</p>
+
+<p><code>bash
+cake test
+</code></p>
+
+<p>To run in the browser, start a web server to serve up the tests:</p>
+
+<p><code>bash
+batman server
+</code></p>
+
+<p>...then visit <code>http://localhost:1047/tests/batman/test.html</code>.</p>
+
+<h4>3. Write some test-driven code</h4>
+
+<p>The tests are in <code>tests/batman</code>. You'll need to source any new test files in <code>tests/batman/test.html</code>.</p>
+
+<h4>4. Create a pull request</h4>
+
+<p>If it's good code that fits with the goals of the project, we'll merge it in!</p>
+
+<h1>License</h1>
+
+<p>batman.js is copyright 2011 by <a href="http://www.shopify.com">Shopify</a>, released under the MIT License (see LICENSE for details).</p>           </td>         </tr>       </tbody>     </table>           <div id="projectname">batman.js</div>        </div> </body> </html>  

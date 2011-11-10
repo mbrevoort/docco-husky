@@ -1,0 +1,385 @@
+ <!DOCTYPE html>  <html> <head>   <title>batman.solo.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="../docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">             <a class="source" href="../README.html">               <span class="file_name">README</span>             </a>                                           <a class="source " href="../src/batman.html">                 <span class="base_path">src / </span><span class="file_name">batman.coffee</span>               </a>                                           <a class="source " href="../src/batman.jquery.html">                 <span class="base_path">src / </span><span class="file_name">batman.jquery.coffee</span>               </a>                                           <a class="source " href="../src/batman.node.html">                 <span class="base_path">src / </span><span class="file_name">batman.node.coffee</span>               </a>                                           <a class="source selected" href="../src/batman.solo.html">                 <span class="base_path">src / </span><span class="file_name">batman.solo.coffee</span>               </a>                                           <a class="source " href="../src/extras/batman.i18n.html">                 <span class="base_path">src / extras / </span><span class="file_name">batman.i18n.coffee</span>               </a>                                           <a class="source " href="../src/extras/batman.rails.html">                 <span class="base_path">src / extras / </span><span class="file_name">batman.rails.coffee</span>               </a>                                           <a class="source " href="../src/tools/batman.html">                 <span class="base_path">src / tools / </span><span class="file_name">batman.coffee</span>               </a>                                           <a class="source " href="../src/tools/build/remove_development_transform.html">                 <span class="base_path">src / tools / build / </span><span class="file_name">remove_development_transform.coffee</span>               </a>                                           <a class="source " href="../src/tools/generator.html">                 <span class="base_path">src / tools / </span><span class="file_name">generator.coffee</span>               </a>                                           <a class="source " href="../src/tools/server.html">                 <span class="base_path">src / tools / </span><span class="file_name">server.coffee</span>               </a>                                           <a class="source " href="../src/tools/utils.html">                 <span class="base_path">src / tools / </span><span class="file_name">utils.coffee</span>               </a>                                           <a class="source " href="../tools/build/remove_development_transform.html">                 <span class="base_path">tools / build / </span><span class="file_name">remove_development_transform.js</span>               </a>                                           <a class="source " href="../tools/cli.html">                 <span class="base_path">tools / </span><span class="file_name">cli.js</span>               </a>                                           <a class="source " href="../tools/framework.html">                 <span class="base_path">tools / </span><span class="file_name">framework.js</span>               </a>                                           <a class="source " href="../tools/generator.html">                 <span class="base_path">tools / </span><span class="file_name">generator.js</span>               </a>                                           <a class="source " href="../tools/server.html">                 <span class="base_path">tools / </span><span class="file_name">server.js</span>               </a>                                           <a class="source " href="../tools/server_utils.html">                 <span class="base_path">tools / </span><span class="file_name">server_utils.js</span>               </a>                                           <a class="source " href="../tools/templates/app/$app$.html">                 <span class="base_path">tools / templates / app / </span><span class="file_name">$app$.coffee</span>               </a>                                           <a class="source " href="../tools/templates/app/controllers/app_controller.html">                 <span class="base_path">tools / templates / app / controllers / </span><span class="file_name">app_controller.coffee</span>               </a>                                           <a class="source " href="../tools/templates/controller/controllers/$name$_controller.html">                 <span class="base_path">tools / templates / controller / controllers / </span><span class="file_name">$name$_controller.coffee</span>               </a>                                           <a class="source " href="../tools/templates/model/models/$name$.html">                 <span class="base_path">tools / templates / model / models / </span><span class="file_name">$name$.coffee</span>               </a>                                           <a class="source " href="../tools/utils.html">                 <span class="base_path">tools / </span><span class="file_name">utils.js</span>               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               batman.solo.coffee             </h1>             <div class="filepath">src/</div>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>batman.nodep.coffee
+batman.js</p>
+
+<p>Created by Nick Small
+Copyright 2011, Shopify</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="o">`</span>
+<span class="err">/*!</span>
+  <span class="o">*</span> <span class="nx">Reqwest</span><span class="o">!</span> <span class="nx">A</span> <span class="nx">x</span><span class="o">-</span><span class="nx">browser</span> <span class="nx">general</span> <span class="nx">purpose</span> <span class="nx">XHR</span> <span class="nx">connection</span> <span class="nx">manager</span>
+  <span class="o">*</span> <span class="nx">copyright</span> <span class="nx">Dustin</span> <span class="nx">Diaz</span> <span class="mi">2011</span>
+  <span class="o">*</span> <span class="nx">https</span><span class="o">:</span><span class="err">//github.com/ded/reqwest</span>
+  <span class="o">*</span> <span class="nx">license</span> <span class="nx">MIT</span>
+  <span class="o">*</span><span class="err">/</span>
+<span class="o">!</span>
+<span class="nx">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">win</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">var</span> <span class="nv">twoHundo = </span><span class="sr">/^20\d$/</span><span class="p">,</span>
+        <span class="nv">doc = </span><span class="nb">document</span><span class="p">,</span>
+        <span class="nv">byTag = </span><span class="s1">&#39;getElementsByTagName&#39;</span><span class="p">,</span>
+        <span class="nv">contentType = </span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>
+        <span class="nv">head = </span><span class="nx">doc</span><span class="p">[</span><span class="nx">byTag</span><span class="p">](</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="nv">uniqid = </span><span class="mi">0</span><span class="p">,</span>
+        <span class="nx">lastValue</span> <span class="err">// data stored by the most recent JSONP callback</span>
+        <span class="p">,</span> <span class="nv">xhr = </span><span class="p">(</span><span class="s1">&#39;XMLHttpRequest&#39;</span> <span class="k">in</span> <span class="nx">win</span><span class="p">)</span> <span class="o">?</span>
+        <span class="nx">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">()</span>
+        <span class="p">}</span> <span class="o">:</span> <span class="nx">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s1">&#39;Microsoft.XMLHTTP&#39;</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">readyState</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">success</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">o</span> <span class="o">&amp;&amp;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">twoHundo</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">status</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="nx">success</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="nx">error</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">setHeaders</span><span class="p">(</span><span class="nx">http</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">var</span> <span class="nv">headers = </span><span class="nx">o</span><span class="p">.</span><span class="nx">headers</span> <span class="o">||</span> <span class="p">{}</span>
+            <span class="nv">headers.Accept = </span><span class="nx">headers</span><span class="p">.</span><span class="nx">Accept</span> <span class="o">||</span> <span class="s1">&#39;text/javascript, text/html, application/xml, text/xml, */*&#39;</span>
+
+            <span class="o">/</span><span class="err">/ breaks cross-origin requests with legacy browsers</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">o</span><span class="p">.</span><span class="nx">crossOrigin</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;X-Requested-With&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;X-Requested-With&#39;</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39;XMLHttpRequest&#39;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">headers</span><span class="p">[</span><span class="nx">contentType</span><span class="p">]</span> <span class="o">=</span> <span class="nx">headers</span><span class="p">[</span><span class="nx">contentType</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">var</span> <span class="nx">h</span> <span class="k">in</span> <span class="nx">headers</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">headers</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">http</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="nx">h</span><span class="p">,</span> <span class="nx">headers</span><span class="p">[</span><span class="nx">h</span><span class="p">],</span> <span class="kc">false</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">getCallbackName</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">var</span> <span class="nv">callbackVar = </span><span class="nx">o</span><span class="p">.</span><span class="nx">jsonpCallback</span> <span class="o">||</span> <span class="s2">&quot;callback&quot;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="nx">callbackVar</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span> <span class="o">==</span> <span class="p">(</span><span class="nx">callbackVar</span> <span class="o">+</span> <span class="s2">&quot;=?&quot;</span><span class="p">))</span> <span class="p">{</span>
+                <span class="err">// Generate a guaranteed unique callback name</span>
+                <span class="nx">var</span> <span class="nv">callbackName = </span><span class="s2">&quot;reqwest_&quot;</span> <span class="o">+</span> <span class="nx">uniqid</span><span class="o">++</span>
+
+                <span class="err">// Replace the ? in the URL with the generated name</span>
+                <span class="nv">o.url = </span><span class="nx">o</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">o</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">callbackName</span>
+                <span class="k">return</span> <span class="nx">callbackName</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="err">// Find the supplied callback name</span>
+                <span class="nx">var</span> <span class="nv">regex = </span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">callbackVar</span> <span class="o">+</span> <span class="s2">&quot;=([\\w]+)&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nx">o</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">regex</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="o">/</span><span class="err">/ Store the data returned by the most recent callback</span>
+
+
+        <span class="nx">function</span> <span class="nx">generalCallback</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">lastValue = </span><span class="nx">data</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">getRequest</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">function</span> <span class="nx">onload</span><span class="p">()</span> <span class="p">{</span>
+                <span class="err">// Call the user callback with the last value stored</span>
+                <span class="o">/</span><span class="err">/ and clean up values and scripts.</span>
+                <span class="nx">o</span><span class="p">.</span><span class="nx">success</span> <span class="o">&amp;&amp;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="nx">lastValue</span><span class="p">)</span>
+                <span class="nv">lastValue = </span><span class="kc">undefined</span>
+                <span class="nx">head</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;jsonp&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">var</span> <span class="nv">script = </span><span class="nx">doc</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span>
+
+                <span class="o">/</span><span class="err">/ Add the global callback</span>
+                <span class="nx">win</span><span class="p">[</span><span class="nx">getCallbackName</span><span class="p">(</span><span class="nx">o</span><span class="p">)]</span> <span class="o">=</span> <span class="nx">generalCallback</span><span class="p">;</span>
+
+                <span class="err">// Setup our script element</span>
+                <span class="nv">script.type = </span><span class="s1">&#39;text/javascript&#39;</span>
+                <span class="nv">script.src = </span><span class="nx">o</span><span class="p">.</span><span class="nx">url</span>
+                <span class="nv">script.async = </span><span class="kc">true</span>
+
+                <span class="nv">script.onload = </span><span class="nx">onload</span>
+                <span class="err">// onload for IE</span>
+                <span class="nv">script.onreadystatechange = </span><span class="nx">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="sr">/^loaded|complete$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">script</span><span class="p">.</span><span class="nx">readyState</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">onload</span><span class="p">()</span>
+                <span class="p">}</span>
+
+                <span class="o">/</span><span class="err">/ Add the script to the DOM head</span>
+                <span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">var</span> <span class="nv">http = </span><span class="nx">xhr</span><span class="p">()</span>
+                <span class="nx">http</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">method</span> <span class="o">||</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="k">typeof</span> <span class="nx">o</span> <span class="o">==</span> <span class="s1">&#39;string&#39;</span> <span class="o">?</span> <span class="nv">o : </span><span class="nx">o</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+                <span class="nx">setHeaders</span><span class="p">(</span><span class="nx">http</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span>
+                <span class="nv">http.onreadystatechange = </span><span class="nx">readyState</span><span class="p">(</span><span class="nx">http</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+                <span class="nx">o</span><span class="p">.</span><span class="nx">before</span> <span class="o">&amp;&amp;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="nx">http</span><span class="p">)</span>
+                <span class="nx">http</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">data</span> <span class="o">||</span> <span class="kc">null</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nx">http</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">Reqwest</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nv">o = </span><span class="nx">o</span>
+            <span class="k">this</span><span class="p">.</span><span class="nv">fn = </span><span class="nx">fn</span>
+            <span class="nx">init</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">setType</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="sr">/\.json$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">url</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s1">&#39;json&#39;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="sr">/\.jsonp$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">url</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s1">&#39;jsonp&#39;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="sr">/\.js$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">url</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s1">&#39;js&#39;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="sr">/\.html?$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">url</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s1">&#39;html&#39;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="sr">/\.xml$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">url</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s1">&#39;xml&#39;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="s1">&#39;js&#39;</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">init</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nv">url = </span><span class="k">typeof</span> <span class="nx">o</span> <span class="o">==</span> <span class="s1">&#39;string&#39;</span> <span class="o">?</span> <span class="nv">o : </span><span class="nx">o</span><span class="p">.</span><span class="nx">url</span>
+            <span class="k">this</span><span class="p">.</span><span class="nv">timeout = </span><span class="kc">null</span>
+            <span class="nx">var</span> <span class="nv">type = </span><span class="nx">o</span><span class="p">.</span><span class="nx">type</span> <span class="o">||</span> <span class="nx">setType</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">url</span><span class="p">),</span>
+                <span class="nv">self = </span><span class="k">this</span>
+                <span class="nv">fn = </span><span class="nx">fn</span> <span class="o">||</span>
+                <span class="nx">function</span><span class="p">()</span> <span class="p">{}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">timeout</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nv">timeout = </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">function</span><span class="p">()</span> <span class="p">{</span>
+                        <span class="nx">self</span><span class="p">.</span><span class="nx">abort</span><span class="p">()</span>
+                        <span class="nx">error</span><span class="p">()</span>
+                    <span class="p">},</span> <span class="nx">o</span><span class="p">.</span><span class="nx">timeout</span><span class="p">)</span>
+                <span class="p">}</span>
+
+                <span class="nx">function</span> <span class="nx">complete</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">o</span><span class="p">.</span><span class="nx">complete</span> <span class="o">&amp;&amp;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">complete</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span>
+                <span class="p">}</span>
+
+                <span class="nx">function</span> <span class="nx">success</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">o</span><span class="p">.</span><span class="nx">timeout</span> <span class="o">&amp;&amp;</span> <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">timeout</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nv">self.timeout = </span><span class="kc">null</span><span class="p">)</span>
+                    <span class="nx">var</span> <span class="nv">r = </span><span class="nx">resp</span><span class="p">.</span><span class="nx">responseText</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">switch</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">case</span> <span class="s1">&#39;json&#39;</span><span class="o">:</span>
+                            <span class="nv">resp = </span><span class="nx">win</span><span class="p">.</span><span class="nx">JSON</span> <span class="o">?</span> <span class="nx">win</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">:</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nx">r</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="nx">case</span> <span class="s1">&#39;js&#39;</span><span class="o">:</span>
+                            <span class="nv">resp = </span><span class="nb">eval</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="nx">case</span> <span class="s1">&#39;html&#39;</span><span class="o">:</span>
+                            <span class="nv">resp = </span><span class="nx">r</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+
+                    <span class="nx">fn</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span>
+                    <span class="nx">o</span><span class="p">.</span><span class="nx">success</span> <span class="o">&amp;&amp;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span>
+                    <span class="nx">complete</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span>
+                <span class="p">}</span>
+
+                <span class="nx">function</span> <span class="nx">error</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">o</span><span class="p">.</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span>
+                    <span class="nx">complete</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span>
+                <span class="p">}</span>
+
+                <span class="k">this</span><span class="p">.</span><span class="nv">request = </span><span class="nx">getRequest</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">success</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="nv">Reqwest.prototype = </span><span class="p">{</span>
+            <span class="nv">abort: </span><span class="nx">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">abort</span><span class="p">()</span>
+            <span class="p">}</span>
+
+            <span class="p">,</span>
+            <span class="nv">retry: </span><span class="nx">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">init</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">o</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">fn</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">reqwest</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">Reqwest</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">enc</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="nx">function</span> <span class="nx">serial</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">var</span> <span class="nv">n = </span><span class="nx">el</span><span class="p">.</span><span class="nx">name</span>
+            <span class="err">// don&#39;t serialize elements that are disabled or without a name</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">||</span> <span class="o">!</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+            <span class="p">}</span>
+            <span class="nv">n = </span><span class="nx">enc</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span> <span class="p">{</span>
+            <span class="nx">case</span> <span class="s1">&#39;input&#39;</span><span class="o">:</span>
+                <span class="k">switch</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="err">// silly wabbit</span>
+                <span class="nx">case</span> <span class="s1">&#39;reset&#39;</span><span class="o">:</span>
+                <span class="nx">case</span> <span class="s1">&#39;button&#39;</span><span class="o">:</span>
+                <span class="nx">case</span> <span class="s1">&#39;image&#39;</span><span class="o">:</span>
+                <span class="nx">case</span> <span class="s1">&#39;file&#39;</span><span class="o">:</span>
+                    <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+                <span class="nx">case</span> <span class="s1">&#39;checkbox&#39;</span><span class="o">:</span>
+                <span class="nx">case</span> <span class="s1">&#39;radio&#39;</span><span class="o">:</span>
+                    <span class="k">return</span> <span class="nx">el</span><span class="p">.</span><span class="nx">checked</span> <span class="o">?</span> <span class="nx">n</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">value</span> <span class="o">?</span> <span class="nx">enc</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="o">:</span> <span class="kc">true</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&amp;&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span>
+                <span class="nv">default:</span>
+                    <span class="err">// text hidden password submit</span>
+                    <span class="k">return</span> <span class="nx">n</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">value</span> <span class="o">?</span> <span class="nx">enc</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&amp;&#39;</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="nx">case</span> <span class="s1">&#39;textarea&#39;</span><span class="o">:</span>
+                <span class="k">return</span> <span class="nx">n</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="nx">enc</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&amp;&#39;</span>
+            <span class="nx">case</span> <span class="s1">&#39;select&#39;</span><span class="o">:</span>
+                <span class="err">// @todo refactor beyond basic single selected value case</span>
+                <span class="k">return</span> <span class="nx">n</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="nx">enc</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">options</span><span class="p">[</span><span class="nx">el</span><span class="p">.</span><span class="nx">selectedIndex</span><span class="p">].</span><span class="nx">value</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&amp;&#39;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="p">}</span>
+
+        <span class="nv">reqwest.serialize = </span><span class="nx">function</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">var</span> <span class="nv">fields = </span><span class="p">[</span><span class="nx">form</span><span class="p">[</span><span class="nx">byTag</span><span class="p">](</span><span class="s1">&#39;input&#39;</span><span class="p">),</span> <span class="nx">form</span><span class="p">[</span><span class="nx">byTag</span><span class="p">](</span><span class="s1">&#39;select&#39;</span><span class="p">),</span> <span class="nx">form</span><span class="p">[</span><span class="nx">byTag</span><span class="p">](</span><span class="s1">&#39;textarea&#39;</span><span class="p">)],</span>
+                <span class="nv">serialized = </span><span class="p">[]</span>
+
+                <span class="k">for</span> <span class="p">(</span><span class="nx">var</span> <span class="nv">i = </span><span class="mi">0</span><span class="p">,</span> <span class="nv">l = </span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="nx">var</span> <span class="nv">j = </span><span class="mi">0</span><span class="p">,</span> <span class="nv">l2 = </span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">l2</span><span class="p">;</span> <span class="o">++</span><span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">serialized</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">serial</span><span class="p">(</span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]))</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="nx">serialized</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="nv">reqwest.serializeArray = </span><span class="nx">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">var</span> <span class="nv">pairs = </span><span class="k">this</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(</span><span class="nx">f</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">),</span> <span class="nv">i = </span><span class="mi">0</span><span class="p">,</span> <span class="nv">l = </span><span class="nx">pairs</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nv">r = </span><span class="p">[],</span> <span class="nx">o</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">pairs</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nv">o = </span><span class="nx">pairs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+                    <span class="nv">name: </span><span class="nx">o</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="nv">value: </span><span class="nx">o</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="p">})</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">r</span>
+        <span class="p">}</span>
+
+        <span class="nx">var</span> <span class="nv">old = </span><span class="nx">context</span><span class="p">.</span><span class="nx">reqwest</span>
+    <span class="nv">reqwest.noConflict = </span><span class="nx">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">context.reqwest = </span><span class="nx">old</span>
+        <span class="k">return</span> <span class="k">this</span>
+    <span class="p">}</span>
+
+    <span class="o">/</span><span class="err">/ defined as extern for Closure Compilation</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">module</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="nv">module.exports = </span><span class="nx">reqwest</span>
+    <span class="nx">context</span><span class="p">[</span><span class="s1">&#39;reqwest&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">reqwest</span>
+
+<span class="p">}(</span><span class="k">this</span><span class="p">,</span> <span class="nb">window</span><span class="p">)</span>
+
+<span class="o">`</span>
+<span class="p">(</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span><span class="p">).</span><span class="nv">reqwest = </span><span class="k">if</span> <span class="nb">window</span><span class="o">?</span> <span class="k">then</span> <span class="nb">window</span><span class="p">.</span><span class="nx">reqwest</span> <span class="k">else</span> <span class="nx">reqwest</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p><code>param</code> and <code>buildParams</code> stolen from jQuery</p>
+
+<p>jQuery JavaScript Library v1.6.1
+http://jquery.com/</p>
+
+<p>Copyright 2011, John Resig
+Dual licensed under the MIT or GPL Version 2 licenses.
+http://jquery.org/license</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">rbracket = </span><span class="sr">/\[\]$/</span>
+<span class="nv">r20 = </span><span class="sr">/%20/g</span>
+<span class="nv">param = </span><span class="nf">(a) -&gt;</span>
+  <span class="nv">s = </span><span class="p">[]</span>
+  <span class="nv">add = </span><span class="nf">(key, value) -&gt;</span>
+    <span class="nv">value = </span><span class="p">(</span><span class="k">if</span> <span class="nx">Batman</span><span class="p">.</span><span class="nx">typeOf</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">is</span> <span class="s1">&#39;function&#39;</span> <span class="k">then</span> <span class="nx">value</span><span class="p">()</span> <span class="k">else</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="nx">s</span><span class="p">[</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="nx">Batman</span><span class="p">.</span><span class="nx">typeOf</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="o">is</span> <span class="s1">&#39;Array&#39;</span>
+    <span class="k">for</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">name</span> <span class="k">of</span> <span class="nx">a</span>
+      <span class="nx">add</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">value</span>
+  <span class="k">else</span>
+    <span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="k">of</span> <span class="nx">a</span>
+      <span class="nx">buildParams</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">add</span>
+  <span class="nx">s</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">).</span><span class="nx">replace</span> <span class="nx">r20</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span>
+
+<span class="nv">buildParams = </span><span class="nf">(prefix, obj, add) -&gt;</span>
+  <span class="k">if</span> <span class="nx">Batman</span><span class="p">.</span><span class="nx">typeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="o">is</span> <span class="s1">&#39;Array&#39;</span>
+    <span class="k">for</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">obj</span>
+      <span class="k">if</span> <span class="nx">rbracket</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span>
+        <span class="nx">add</span> <span class="nx">prefix</span><span class="p">,</span> <span class="nx">v</span>
+      <span class="k">else</span>
+        <span class="nx">buildParams</span> <span class="nx">prefix</span> <span class="o">+</span> <span class="s2">&quot;[&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="k">if</span> <span class="k">typeof</span> <span class="nx">v</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span> <span class="o">or</span> <span class="nx">Batman</span><span class="p">.</span><span class="nx">typeOf</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">is</span> <span class="s1">&#39;Array&#39;</span> <span class="k">then</span> <span class="nx">i</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">add</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="nx">obj</span><span class="o">?</span> <span class="o">and</span> <span class="k">typeof</span> <span class="nx">obj</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span>
+    <span class="k">for</span> <span class="nx">name</span> <span class="k">of</span> <span class="nx">obj</span>
+      <span class="nx">buildParams</span> <span class="nx">prefix</span> <span class="o">+</span> <span class="s2">&quot;[&quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">name</span><span class="p">],</span> <span class="nx">add</span>
+  <span class="k">else</span>
+    <span class="nx">add</span> <span class="nx">prefix</span><span class="p">,</span> <span class="nx">obj</span>
+
+<span class="nv">Batman.Request::send = </span><span class="nf">(data) -&gt;</span>
+  <span class="nx">@fire</span> <span class="s1">&#39;loading&#39;</span>
+
+  <span class="nv">options =</span>
+    <span class="nv">url: </span><span class="nx">@get</span> <span class="s1">&#39;url&#39;</span>
+    <span class="nv">method: </span><span class="nx">@get</span> <span class="s1">&#39;method&#39;</span>
+    <span class="nv">type: </span><span class="nx">@get</span> <span class="s1">&#39;type&#39;</span>
+    <span class="nv">headers: </span><span class="p">{}</span>
+
+    <span class="nv">success: </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">@set</span> <span class="s1">&#39;response&#39;</span><span class="p">,</span> <span class="nx">response</span>
+      <span class="nx">@set</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span>
+      <span class="nx">@fire</span> <span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="nx">response</span>
+
+    <span class="nv">error: </span><span class="p">(</span><span class="nx">xhr</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">@set</span> <span class="s1">&#39;response&#39;</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span> <span class="o">||</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">content</span>
+      <span class="nx">@set</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span>
+      <span class="nv">xhr.request = </span><span class="err">@</span>
+      <span class="nx">@fire</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">xhr</span>
+
+    <span class="nv">complete: </span><span class="o">=&gt;</span>
+      <span class="nx">@fire</span> <span class="s1">&#39;loaded&#39;</span>
+
+  <span class="k">if</span> <span class="nx">options</span><span class="p">.</span><span class="nx">method</span> <span class="k">in</span> <span class="p">[</span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">]</span>
+    <span class="nx">unless</span> <span class="nx">@get</span><span class="p">(</span><span class="s1">&#39;formData&#39;</span><span class="p">)</span>
+      <span class="nx">options</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;Content-type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">@get</span> <span class="s1">&#39;contentType&#39;</span>
+      <span class="nv">data = </span><span class="nx">data</span> <span class="o">||</span> <span class="nx">@get</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">options</span><span class="p">.</span><span class="nx">method</span> <span class="o">is</span> <span class="s1">&#39;GET&#39;</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nx">url</span> <span class="o">+=</span> <span class="nx">param</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+      <span class="k">else</span>
+        <span class="nv">options.data = </span><span class="nx">param</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="nv">options.data = </span><span class="nx">@constructor</span><span class="p">.</span><span class="nx">objectToFormData</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Fires the request. Grab a reference to the xhr object so we can get the status code elsewhere.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nv">xhr = </span><span class="p">(</span><span class="nx">reqwest</span> <span class="nx">options</span><span class="p">).</span><span class="nx">request</span>
+
+<span class="nv">prefixes = </span><span class="p">[</span><span class="s1">&#39;Webkit&#39;</span><span class="p">,</span> <span class="s1">&#39;Moz&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+<span class="nv">Batman.mixins.animation =</span>
+  <span class="nv">initialize: </span><span class="o">-&gt;</span>
+    <span class="k">for</span> <span class="nx">prefix</span> <span class="k">in</span> <span class="nx">prefixes</span>
+      <span class="nx">@style</span><span class="p">[</span><span class="s2">&quot;#{prefix}Transform&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;scale(0, 0)&#39;</span>
+      <span class="vi">@style.opacity = </span><span class="mi">0</span>
+
+      <span class="nx">@style</span><span class="p">[</span><span class="s2">&quot;#{prefix}TransitionProperty&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;#{if prefix then &#39;-&#39; + prefix.toLowerCase() + &#39;-&#39; else &#39;&#39;}transform, opacity&quot;</span>
+      <span class="nx">@style</span><span class="p">[</span><span class="s2">&quot;#{prefix}TransitionDuration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0.8s, 0.55s&quot;</span>
+      <span class="nx">@style</span><span class="p">[</span><span class="s2">&quot;#{prefix}TransformOrigin&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;left top&quot;</span>
+    <span class="err">@</span>
+  <span class="nv">show: </span><span class="nf">(addToParent) -&gt;</span>
+    <span class="nv">show = </span><span class="o">=&gt;</span>
+      <span class="vi">@style.opacity = </span><span class="mi">1</span>
+      <span class="k">for</span> <span class="nx">prefix</span> <span class="k">in</span> <span class="nx">prefixes</span>
+        <span class="nx">@style</span><span class="p">[</span><span class="s2">&quot;#{prefix}Transform&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;scale(1, 1)&#39;</span>
+      <span class="err">@</span>
+
+    <span class="k">if</span> <span class="nx">addToParent</span>
+      <span class="nx">addToParent</span><span class="p">.</span><span class="nx">append</span><span class="o">?</span><span class="p">.</span><span class="nx">appendChild</span> <span class="err">@</span>
+      <span class="nx">addToParent</span><span class="p">.</span><span class="nx">before</span><span class="o">?</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span> <span class="err">@</span><span class="p">,</span> <span class="nx">addToParent</span><span class="p">.</span><span class="nx">before</span>
+
+      <span class="nx">setTimeout</span> <span class="nx">show</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">else</span>
+      <span class="nx">show</span><span class="p">()</span>
+    <span class="err">@</span>
+  <span class="nv">hide: </span><span class="nf">(shouldRemove) -&gt;</span>
+    <span class="vi">@style.opacity = </span><span class="mi">0</span>
+    <span class="k">for</span> <span class="nx">prefix</span> <span class="k">in</span> <span class="nx">prefixes</span>
+      <span class="nx">@style</span><span class="p">[</span><span class="s2">&quot;#{prefix}Transform&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;scale(0, 0)&#39;</span>
+
+    <span class="nx">setTimeout</span><span class="p">((</span><span class="o">=&gt;</span> <span class="nx">@parentNode</span><span class="o">?</span><span class="p">.</span><span class="nx">removeChild</span> <span class="err">@</span><span class="p">),</span> <span class="mi">600</span><span class="p">)</span> <span class="k">if</span> <span class="nx">shouldRemove</span>
+    <span class="err">@</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>          <div id="projectname">batman.js</div>        </div> </body> </html>  

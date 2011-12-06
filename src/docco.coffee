@@ -122,41 +122,23 @@ parse = (source, code) ->
       code_text += line + '\n'
   save docs_text, code_text
   sections
-
-# Highlights a single chunk of CoffeeScript code, using **Pygments** over stdio,
-# and runs the text of its corresponding comment through **Markdown**, using
-# [Showdown.js](http://attacklab.net/showdown/).
+  
+# Hightlists a single chuck of Code using highlight.js
 #
-# We process the entire file in a single call to Pygments by inserting little
+# We process the entire file in a single call to highlight.js by inserting little
 # marker comments between each section and then splitting the result string
 # wherever our markers occur.
 highlight = (source, sections, callback) ->
   language = get_language source
-  pygments = spawn 'pygmentize', ['-l', language.name, '-f', 'html', '-O', 'encoding=utf-8,tabsize=2']
-  output   = ''
-  
-  pygments.stderr.addListener 'data',  (error)  ->
-    console.error error.toString() if error
-    
-  pygments.stdin.addListener 'error',  (error)  ->
-    console.error "Could not use Pygments to highlight the source."
-    process.exit 1
-    
-  pygments.stdout.addListener 'data', (result) ->
-    output += result if result
-    
-  pygments.addListener 'exit', ->
-    output = output.replace(highlight_start, '').replace(highlight_end, '')
-    fragments = output.split language.divider_html
-    for section, i in sections
-      section.code_html = highlight_start + fragments[i] + highlight_end
-      section.docs_html = showdown.makeHtml section.docs_text
-    callback()
-    
-  if pygments.stdin.writable
-    pygments.stdin.write((section.code_text for section in sections).join(language.divider_text))
-    pygments.stdin.end()
-  
+  input = (section.code_text for section in sections).join(language.divider_text);
+  output = hljs.fixMarkup hljs.highlight( language.name, input ).value
+  fragments = output.split language.divider_html
+  for section, i in sections
+    section.code_html = highlight_start + fragments[i] + highlight_end
+    section.docs_html = showdown.makeHtml section.docs_text
+  callback()
+
+
 # Once all of the code is finished highlighting, we can generate the HTML file
 # and write out the documentation. Pass the completed sections into the template
 # found in `resources/docco.jst`
@@ -235,7 +217,10 @@ showdown = require('./../vendor/showdown').Showdown
 jade     = require 'jade'
 dox      = require 'dox'
 gravatar = require 'gravatar'
+hljs     = require './../vendor/highlight.pack.js'
 {spawn, exec} = require 'child_process'
+
+hljs.initHighlighting
 
 # A list of the languages that Docco supports, mapping the file extension to
 # the name of the Pygments lexer and the symbol that indicates a comment. To
@@ -269,7 +254,7 @@ for ext, l of languages
   # The mirror of `divider_text` that we expect Pygments to return. We can split
   # on this to recover the original sections.
   # Note: the class is "c" for Python and "c1" for the other languages
-  l.divider_html = new RegExp('\\n*<span class="c1?">' + l.symbol + 'DIVIDER<\\/span>\\n*')
+  l.divider_html = new RegExp('\\n*<span class="comment">' + l.symbol + 'DIVIDER<\\/span>\\n*')
 
   # Since we'll only handle /* */ multilin comments for now, test for them explicitly
   # Otherwise set the multi matchers to an unmatchable RegEx
@@ -387,7 +372,7 @@ parse_args (sources, project_name, raw_paths) ->
 
   ensure_directory 'docs', ->
     generate_readme(context, raw_paths,package_json)
-    fs.writeFile 'docs/docco.css', fs.readFileSync(context.config.css).toString()
+    fs.writeFile 'docs/docco.css', fs.readFileSync(context.config.css).toString() + ' ' +  fs.readFileSync(__dirname + '/../resources/styles/highlight/github.css').toString()
     files = sources[0..sources.length]
     next_file = -> generate_documentation files.shift(), context, next_file if files.length
     next_file()

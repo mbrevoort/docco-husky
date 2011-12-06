@@ -217,6 +217,7 @@ showdown = require('./../vendor/showdown').Showdown
 jade     = require 'jade'
 dox      = require 'dox'
 gravatar = require 'gravatar'
+_        = require 'underscore'
 hljs     = require './../vendor/highlight.pack.js'
 {spawn, exec} = require 'child_process'
 
@@ -227,7 +228,7 @@ hljs.initHighlighting
 # add another language to Docco's repertoire, add it here.
 languages =
   '.coffee':
-    name: 'coffee-script', symbol: '#'
+    name: 'coffee', symbol: '#'
   '.js':
     name: 'javascript', symbol: '//', multi_start: "/*", multi_end: "*/"
   '.rb':
@@ -348,18 +349,13 @@ parse_args = (callback) ->
 
     callback(sources, project_name, args)
 
-check_config = (context,pkg)->
+check_config = (context, pkg)->
   defaults = {
     css: (__dirname + '/../resources/docco.css')
+    highlight_css: (__dirname + '/../resources/styles/highlight/github.css')
     show_timestamp: true
   }
-  context.config={}
-  unless pkg.docco_configuration?
-    context.config = defaults
-  else
-    pkg_cfg = pkg.docco_configuration
-    if pkg_cfg.css? then context.config.css = pkg_cfg.css else context.config.css = defaults.css
-    if pkg_cfg.show_timestamp? then context.config.show_timestamp = pkg_cfg.show_timestamp else context.config.show_timestamp = defaults.show_timestamp
+  context.config = _.extend(pkg.docco_configuration || {}, defaults);
 
 parse_args (sources, project_name, raw_paths) ->
   # Rather than relying on globals, let's pass around a context w/ misc info
@@ -368,11 +364,12 @@ parse_args (sources, project_name, raw_paths) ->
   
   package_path = process.cwd() + '/package.json'
   package_json = if file_exists(package_path) then JSON.parse(fs.readFileSync(package_path).toString()) else {}
-  check_config(context,package_json)
+  check_config(context, package_json)
 
   ensure_directory 'docs', ->
-    generate_readme(context, raw_paths,package_json)
-    fs.writeFile 'docs/docco.css', fs.readFileSync(context.config.css).toString() + ' ' +  fs.readFileSync(__dirname + '/../resources/styles/highlight/github.css').toString()
+    generate_readme(context, raw_paths, package_json)
+    console.log context.config.highlight_css
+    fs.writeFile 'docs/docco.css', fs.readFileSync(context.config.css).toString() + ' ' +  fs.readFileSync(context.config.highlight_css).toString()
     files = sources[0..sources.length]
     next_file = -> generate_documentation files.shift(), context, next_file if files.length
     next_file()

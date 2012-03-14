@@ -320,10 +320,10 @@ relative_base = (filepath, context) ->
   if result == '/' or result == '//' then '' else result
 
 # Compute the destination HTML path for an input source file path. If the source
-# is `lib/example.coffee`, the HTML will be at `docs/example.html`.
+# is `lib/example.coffee`, the HTML will be at `docs/example.coffee.html`.
 destination = (filepath, context) ->
   base_path = relative_base filepath, context
-  "#{context.config.output_dir}/" + base_path + path.basename(filepath, path.extname(filepath)) + '.html'
+  "#{context.config.output_dir}/" + filepath + '.html'
 
 # Ensure that the destination directory exists.
 ensure_directory = (dir, callback) ->

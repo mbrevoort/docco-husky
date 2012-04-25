@@ -179,7 +179,7 @@ generate_readme = (context, sources, package_json) ->
   readme_template  = jade.compile fs.readFileSync(__dirname + '/../resources/readme.jade').toString(), { filename: __dirname + '/../resources/readme.jade' }
   readme_path = "#{process.cwd()}/#{source}"
   content_index_path = "#{process.cwd()}/#{context.config.content_dir}/content_index.md"
-  
+  console.log content_index_path
   # generate the content index if it exists under the content sources
   if file_exists(content_index_path) 
     content_index = parse_markdown context, content_index_path
@@ -187,7 +187,7 @@ generate_readme = (context, sources, package_json) ->
     content_index = ""  
  
   # parse the markdown the the readme 
-  if file_exists(content_index_path)
+  if file_exists(readme_path)
     content = parse_markdown(context, readme_path)
   else
     content = "There is no #{source} for this project yet :( "
@@ -250,7 +250,7 @@ parse_markdown = (context, src) ->
   return showdown.makeHtml markdown
 
 cloc = (paths, callback) ->
-  exec "#{__dirname}/../vendor/cloc.pl --quiet --read-lang-def=#{__dirname}/../resources/cloc_definitions.txt #{paths}", (err, stdout) ->
+  exec "'#{__dirname}/../vendor/cloc.pl' --quiet --read-lang-def='#{__dirname}/../resources/cloc_definitions.txt' #{paths}", (err, stdout) ->
     console.log "Calculating project stats failed #{err}" if err
     callback stdout
 
@@ -391,7 +391,7 @@ parse_args = (callback) ->
     # Don't include hidden files, either
     sources = stdout.split("\n").filter (file) -> file != '' and path.basename(file)[0] != '.'
 
-    console.log "docco: Recursively generating docs underneath #{roots}/"
+    console.log "docco: Recursively generating documentation for #{roots}"
 
     callback(sources, project_name, args)
 

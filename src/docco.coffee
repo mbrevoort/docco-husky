@@ -187,7 +187,10 @@ generate_readme = (context, sources, package_json) ->
     content_index = ""  
  
   # parse the markdown the the readme 
-  content = parse_markdown(context, readme_path) || "There is no #{source} for this project yet :( "
+  if file_exists(content_index_path)
+    content = parse_markdown(context, readme_path)
+  else
+    content = "There is no #{source} for this project yet :( "
   
   # run cloc 
   cloc sources.join(" "), (code_stats) ->

@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/mbrevoort/docco-husky.png)](http://travis-ci.org/mbrevoort/docco-husky)
 Overview
 --------
 

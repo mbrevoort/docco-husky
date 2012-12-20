@@ -305,7 +305,7 @@ for ext, l of languages
   # Since we'll only handle /* */ multilin comments for now, test for them explicitly
   # Otherwise set the multi matchers to an unmatchable RegEx
   if l.multi_start == "/*"
-    l.multi_start_matcher = new RegExp(/^[\s]*\/\*[.]*/)
+    l.multi_start_matcher = new RegExp(/^[\s]*\/\*($|[^A-Za-z][.]*)/)
   else
     l.multi_start_matcher = new RegExp(/a^/)
   if l.multi_end == "*/"

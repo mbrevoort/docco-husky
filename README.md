@@ -46,7 +46,7 @@ wildcards) and directories for it to recurse.
 Optional configuration in your package.json. The project name can alternatively be passed in the package.json configuration and it will override the value passed in the <code>-name</code> option.
 
 	"docco_husky": {
-		"css": "path/to/alternative/css/file.css"
+		"css": "path/to/alternative/css/file.css",
     	"output_dir": "docs/out",				    // default "docs"
     	"content_dir": "docs/my_markdown_files",    // default null
     	"project_name": "Your Project name",

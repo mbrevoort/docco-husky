@@ -239,7 +239,7 @@ write_file = (dest, contents) ->
       return write_func() unless err
 
       if err
-        exec "mkdir -p #{target_dir}", (err) ->
+        exec "mkdir -p \"#{target_dir}\"", (err) ->
           throw err if err
           write_func()
 
@@ -330,7 +330,7 @@ destination = (filepath, context) ->
 
 # Ensure that the destination directory exists.
 ensure_directory = (dir, callback) ->
-  exec "mkdir -p #{dir}", -> callback()
+  exec "mkdir -p \"#{dir}\"", -> callback()
 
 file_exists = (path) ->
   try 

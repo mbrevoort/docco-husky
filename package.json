@@ -17,7 +17,8 @@
   ],
   "contributors": [
     "Mike Brevoort <mike@brevoort.com>",
-    "Jeremy Ashkenas"
+    "Jeremy Ashkenas",
+    "Ryan LeFevre <meltingice8917@gmail.com>"
   ],
   "engines": {
     "node": ">=0.4.0"

@@ -125,7 +125,7 @@ parse = (source, code) ->
 
 # Highlights a single chunk of CoffeeScript code, using **Pygments** over stdio,
 # and runs the text of its corresponding comment through **Markdown**, using
-# [Showdown.js](http://attacklab.net/showdown/).
+# [marked](https://github.com/chjj/marked).
 #
 # We process the entire file in a single call to Pygments by inserting little
 # marker comments between each section and then splitting the result string
@@ -148,10 +148,11 @@ highlight = (source, sections, callback) ->
   pygments.addListener 'exit', ->
     output = output.replace(highlight_start, '').replace(highlight_end, '')
     fragments = output.split language.divider_html
-    for section, i in sections
+    Promise.each(sections, (section, i) ->
       section.code_html = highlight_start + fragments[i] + highlight_end
-      section.docs_html = showdown.makeHtml section.docs_text
-    callback()
+      parse_markdown(section.docs_text).then (docs_html) ->
+        section.docs_html = docs_html
+    ).then(callback)
     
   if pygments.stdin.writable
     pygments.stdin.write((section.code_text for section in sections).join(language.divider_text))
@@ -179,37 +180,28 @@ generate_readme = (context, sources, package_json) ->
   readme_template  = jade.compile fs.readFileSync(__dirname + '/../resources/readme.jade').toString(), { filename: __dirname + '/../resources/readme.jade' }
   readme_path = "#{process.cwd()}/#{source}"
   content_index_path = "#{process.cwd()}/#{context.config.content_dir}/content_index.md"
-  console.log content_index_path
-  # generate the content index if it exists under the content sources
-  if file_exists(content_index_path) 
-    content_index = parse_markdown context, content_index_path
-  else
-    content_index = ""  
- 
-  # parse the markdown the the readme 
-  if file_exists(readme_path)
-    content = parse_markdown(context, readme_path)
-  else
-    content = "There is no #{source} for this project yet :( "
   
-  # run cloc 
-  cloc sources.join(" "), (code_stats) ->
-
-    html = readme_template {
-      title: title, 
-      context: context, 
-      content: content, 
-      content_index: content_index,
-      file_path: source, 
-      path: path, 
-      relative_base: relative_base, 
-      package_json: package_json, 
-      code_stats: code_stats, 
-      gravatar: gravatar
-    }
-    
-    console.log "docco: #{source} -> #{dest}"
-    write_file(dest, html)
+  Promise.props(
+    content_index: parse_markdown_from_file(content_index_path)
+    content: parse_markdown_from_file(readme_path, "There is no #{source} for this project yet :(")
+  ).then (result) ->
+    # run cloc
+    cloc sources.join(" "), (code_stats) ->
+      html = readme_template {
+        title: title, 
+        context: context, 
+        content: result.content, 
+        content_index: result.content_index,
+        file_path: source, 
+        path: path, 
+        relative_base: relative_base, 
+        package_json: package_json, 
+        code_stats: code_stats, 
+        gravatar: gravatar
+      }
+      
+      console.log "docco: #{source} -> #{dest}"
+      write_file(dest, html)
 
 generate_content = (context, dir) ->
   walker = walk.walk(dir, { followLinks: false });    
@@ -219,12 +211,14 @@ generate_content = (context, dir) ->
       src = "#{root}/#{fileStats.name}" 
       dest  = destination(src.replace(context.config.content_dir, ""), context)
       console.log "markdown: #{src} --> #{dest}"
-      html = parse_markdown context, src
-      html = content_template {
-        title: fileStats.name, context: context, content: html, file_path: fileStats.name, path: path, relative_base: relative_base
-      }
-      write_file dest, html  
-    next()
+      parse_markdown_from_file(src)
+        .then (html) ->
+          html = content_template {
+            title: fileStats.name, context: context, content: html, file_path: fileStats.name, path: path, relative_base: relative_base
+          }
+          write_file dest, html  
+        .finally(next)
+        
 
 # Write a file to the filesystem
 write_file = (dest, contents) ->
@@ -245,9 +239,19 @@ write_file = (dest, contents) ->
 
 
 # Parse a markdown file and return the HTML 
-parse_markdown = (context, src) ->
-  markdown = fs.readFileSync(src).toString()
-  return showdown.makeHtml markdown
+parse_markdown_from_file = (src, def = "") ->
+  new Promise (resolve, reject) ->
+    if file_exists(src)
+      content = fs.readFileSync(src).toString()
+      parse_markdown(content).then(resolve)
+    else
+      resolve(def)
+
+parse_markdown = (content) ->
+  new Promise (resolve, reject) ->
+    marked content, (err, data) ->
+      return reject(err) if err?
+      resolve(data)
 
 cloc = (paths, callback) ->
   exec "'#{__dirname}/../vendor/cloc.pl' --quiet --read-lang-def='#{__dirname}/../resources/cloc_definitions.txt' #{paths}", (err, stdout) ->
@@ -260,10 +264,11 @@ cloc = (paths, callback) ->
 # (the JavaScript implementation of Markdown).
 fs       = require 'fs'
 path     = require 'path'
-showdown = require('./../vendor/showdown').Showdown
 jade     = require 'jade'
 dox      = require 'dox'
 gravatar = require 'gravatar'
+Promise  = require 'bluebird'
+marked   = require 'marked'
 _        = require 'underscore'
 walk     = require 'walk'
 {spawn, exec} = require 'child_process'

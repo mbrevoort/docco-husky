@@ -17,7 +17,8 @@
   ],
   "contributors": [
     "Mike Brevoort <mike@brevoort.com>",
-    "Jeremy Ashkenas"
+    "Jeremy Ashkenas",
+    "Ryan LeFevre <meltingice8917@gmail.com>"
   ],
   "engines": {
     "node": ">=0.4.0"
@@ -30,10 +31,12 @@
     "url": "git://github.com/mbrevoort/docco-husky.git"
   },
   "dependencies": {
+    "bluebird": "^2.9.25",
     "coffee-script": "latest",
     "dox": "0.1.2",
-    "jade": "0.17.0",
     "gravatar": "1.0.3",
+    "jade": "0.17.0",
+    "marked": "^0.3.3",
     "underscore": "1.2.x",
     "walk": "2.0.2"
   },
